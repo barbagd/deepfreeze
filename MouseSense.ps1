@@ -14,4 +14,4 @@ foreach ($userProfile in $userProfiles.PSChildName) {
     Set-ItemProperty -Path $regPath -Name $regValueName -Value $regValueData
 }
 
-Write-Host "Registry keys set for all user profiles."
+#Write-Host "Registry keys set for all user profiles."
