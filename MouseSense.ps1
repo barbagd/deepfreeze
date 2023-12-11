@@ -4,14 +4,21 @@ $regKeyPath = "Control Panel\Mouse"
 $regValueName = "MouseSensitivity"
 $regValueData = "5"
 
-# Get all user profiles under HKEY_USERS
-$userProfiles = Get-Item -LiteralPath "Registry::HKEY_USERS\*" -ErrorAction SilentlyContinue
+# Get user profiles using Win32_UserProfile class
+$userProfiles = Get-WmiObject Win32_UserProfile | Where-Object { $_.Special -eq $false }
 
 # Iterate through each user profile and set the registry key
-foreach ($userProfile in $userProfiles.PSChildName) {
-    $regPath = "Registry::HKEY_USERS\$userProfile\$regKeyPath"
+foreach ($userProfile in $userProfiles) {
+    $sid = $userProfile.SID
+    $regPath = "Registry::HKEY_USERS\$sid\$regKeyPath"
     New-Item -Path $regPath -Force | Out-Null
     Set-ItemProperty -Path $regPath -Name $regValueName -Value $regValueData
 }
 
+
 #Write-Host "Registry keys set for all user profiles."
+
+
+
+
+
