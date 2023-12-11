@@ -11,7 +11,7 @@ $userProfiles = Get-WmiObject Win32_UserProfile | Where-Object { $_.Special -eq 
 foreach ($userProfile in $userProfiles) {
     $sid = $userProfile.SID
     $regPath = "Registry::HKEY_USERS\$sid\$regKeyPath"
-    New-Item -Path $regPath -Force | Out-Null
+
     Set-ItemProperty -Path $regPath -Name $regValueName -Value $regValueData
 }
 
