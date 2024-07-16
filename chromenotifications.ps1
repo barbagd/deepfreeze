@@ -5,7 +5,7 @@ $registryPath = "HKLM:\Software\Policies\Google\Chrome"
 $valueName = "DefaultNotificationsSetting"
 
 # Define the value type and data
-$valueType = "DWORD"
+#$valueType = "DWORD"
 $valueData = 2
 
 # Create the registry key if it doesn't exist
@@ -14,6 +14,6 @@ if (-not (Test-Path $registryPath)) {
 }
 
 # Set the registry value
-Set-ItemProperty -Path $registryPath -Name $valueName -Value $valueData -PropertyType $valueType
+Set-ItemProperty -Path $registryPath -Name $valueName -Value $valueData
 
 Write-Output "Registry key and value created successfully."
