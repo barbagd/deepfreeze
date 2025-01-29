@@ -2,8 +2,8 @@
 
 # Define the registry path and property
 $path = "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced"
-$propertyName = "TaskbarDa"
-$newValue = 1
+$propertyName = "ExpandableTaskbar"
+$newValue = 0
 
 # Ensure the path exists
 if (-Not (Test-Path $path)) {
